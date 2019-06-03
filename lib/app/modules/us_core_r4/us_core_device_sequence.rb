@@ -156,9 +156,94 @@ module Inferno
   
       end
       
-      test 'Device resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Device.udiCarrier' do
         metadata {
           id '07'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Device.udiCarrier" then
+          assert can_resolve_path(@device, 'udiCarrier'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Device.udiCarrier,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Device.udiCarrier.carrierAIDC' do
+        metadata {
+          id '08'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Device.udiCarrier.carrierAIDC" then
+          assert can_resolve_path(@device, 'udiCarrier.carrierAIDC'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Device.udiCarrier.carrierAIDC,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Device.udiCarrier.carrierHRF' do
+        metadata {
+          id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Device.udiCarrier.carrierHRF" then
+          assert can_resolve_path(@device, 'udiCarrier.carrierHRF'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Device.udiCarrier.carrierHRF,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Device.type' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Device.type" then
+          assert can_resolve_path(@device, 'type'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Device.type,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Device.patient' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Device.patient" then
+          assert can_resolve_path(@device, 'patient'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Device.patient,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Device resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '12'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-device.json'
           desc %(
           )
@@ -172,7 +257,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '08'
+          id '13'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

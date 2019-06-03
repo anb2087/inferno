@@ -52,9 +52,11 @@ def extract_metadata(resources)
         classname: supportedProfile.split('StructureDefinition/')[1].split('-').map(&:capitalize).join.gsub('UsCore','UsCoreR4') + 'Sequence',
         resource: resource['type'],
         profile: "https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-#{supportedProfile.split('StructureDefinition/')[1]}.json", #links in capability statement currently incorrect
+        profile_definition: get_json_from_uri("https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-#{supportedProfile.split('StructureDefinition/')[1]}.json"),
         interactions: [],
         search_params: [],
         search_combos: [],
+        must_supports: [],
         tests: []
       }
       searchParams = resource['searchParam']
@@ -106,6 +108,10 @@ def extract_metadata(resources)
           new_sequence[:interactions] << new_interaction
         end
       end
+      must_supported_elements = new_sequence[:profile_definition]['snapshot']['element'].select{|el| el['mustSupport'] == true} 
+      must_supported_elements.each do |el|
+        new_sequence[:must_supports] << el['path']
+      end
       data[:sequences] << new_sequence
     end
   end
@@ -145,6 +151,10 @@ def generate_tests(metadata)
         next if interaction[:code] == "search-type"
         create_interaction_test(sequence, interaction)
       end
+    end
+
+    sequence[:must_supports].each do |element|
+      create_must_support_test(sequence, element)
     end
 
     create_resource_profile_test(sequence)
@@ -259,6 +269,38 @@ def create_interaction_test(sequence, interaction)
   )
 
   sequence[:tests] << interaction_test
+end
+
+def create_must_support_test(sequence, element)
+  test = {
+    tests_that: "Demonstrates that the server can supply #{element}",
+    index: '%02d' % (sequence[:tests].length + 1),
+    link: 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+  }
+  path_parts = element.split('.')
+  path_parts.delete_at(0)
+  possible_paths = []
+  path_parts.each_with_index do |part, index|
+    if part.include? '[x]' then
+      element_def = sequence[:profile_definition]['snapshot']['element'].select{|el| el['id'] == "#{sequence[:resource]}.#{path_parts[0..index].join('.')}"}.first
+      types = element_def['type']
+      types.each do |type|
+        type_specified = part.gsub('[x]',type['code'])
+        possible_paths << path_parts.map{|original| (original == part)? type_specified : original}.join('.')
+      end
+    end
+  end
+  possible_paths << path_parts.join('.') if possible_paths.empty?
+
+  exists_assertion = possible_paths.map{|path| "can_resolve_path(@#{sequence[:resource].downcase}, '#{path}')"}.join(' || ')
+  test[:test_code] = %(
+        if !@instance.must_support_confirmed.include? "#{element}" then
+          assert #{exists_assertion}, 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "#{element},"
+          @instance.save!
+        end
+  )
+  sequence[:tests] << test
 end
 
 def create_resource_profile_test(sequence)

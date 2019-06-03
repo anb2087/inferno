@@ -293,9 +293,298 @@ module Inferno
   
       end
       
-      test 'DocumentReference resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply DocumentReference.identifier' do
         metadata {
           id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.identifier" then
+          assert can_resolve_path(@documentreference, 'identifier'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.identifier,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.status' do
+        metadata {
+          id '14'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.status" then
+          assert can_resolve_path(@documentreference, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.type' do
+        metadata {
+          id '15'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.type" then
+          assert can_resolve_path(@documentreference, 'type'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.type,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.category' do
+        metadata {
+          id '16'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.category" then
+          assert can_resolve_path(@documentreference, 'category'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.category,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.subject' do
+        metadata {
+          id '17'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.subject" then
+          assert can_resolve_path(@documentreference, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.date' do
+        metadata {
+          id '18'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.date" then
+          assert can_resolve_path(@documentreference, 'date'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.date,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.author' do
+        metadata {
+          id '19'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.author" then
+          assert can_resolve_path(@documentreference, 'author'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.author,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.custodian' do
+        metadata {
+          id '20'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.custodian" then
+          assert can_resolve_path(@documentreference, 'custodian'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.custodian,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.content' do
+        metadata {
+          id '21'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.content" then
+          assert can_resolve_path(@documentreference, 'content'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.content,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.content.attachment' do
+        metadata {
+          id '22'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.content.attachment" then
+          assert can_resolve_path(@documentreference, 'content.attachment'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.content.attachment,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.content.attachment.contentType' do
+        metadata {
+          id '23'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.content.attachment.contentType" then
+          assert can_resolve_path(@documentreference, 'content.attachment.contentType'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.content.attachment.contentType,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.content.attachment.data' do
+        metadata {
+          id '24'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.content.attachment.data" then
+          assert can_resolve_path(@documentreference, 'content.attachment.data'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.content.attachment.data,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.content.attachment.url' do
+        metadata {
+          id '25'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.content.attachment.url" then
+          assert can_resolve_path(@documentreference, 'content.attachment.url'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.content.attachment.url,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.content.format' do
+        metadata {
+          id '26'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.content.format" then
+          assert can_resolve_path(@documentreference, 'content.format'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.content.format,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.context' do
+        metadata {
+          id '27'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.context" then
+          assert can_resolve_path(@documentreference, 'context'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.context,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.context.encounter' do
+        metadata {
+          id '28'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.context.encounter" then
+          assert can_resolve_path(@documentreference, 'context.encounter'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.context.encounter,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DocumentReference.context.period' do
+        metadata {
+          id '29'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DocumentReference.context.period" then
+          assert can_resolve_path(@documentreference, 'context.period'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DocumentReference.context.period,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'DocumentReference resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '30'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-documentreference.json'
           desc %(
           )
@@ -309,7 +598,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '14'
+          id '31'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

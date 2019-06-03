@@ -157,9 +157,128 @@ module Inferno
   
       end
       
-      test 'Practitioner resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Practitioner.identifier' do
         metadata {
           id '07'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Practitioner.identifier" then
+          assert can_resolve_path(@practitioner, 'identifier'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Practitioner.identifier,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Practitioner.identifier.system' do
+        metadata {
+          id '08'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Practitioner.identifier.system" then
+          assert can_resolve_path(@practitioner, 'identifier.system'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Practitioner.identifier.system,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Practitioner.identifier.value' do
+        metadata {
+          id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Practitioner.identifier.value" then
+          assert can_resolve_path(@practitioner, 'identifier.value'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Practitioner.identifier.value,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Practitioner.identifier' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Practitioner.identifier" then
+          assert can_resolve_path(@practitioner, 'identifier'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Practitioner.identifier,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Practitioner.identifier.system' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Practitioner.identifier.system" then
+          assert can_resolve_path(@practitioner, 'identifier.system'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Practitioner.identifier.system,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Practitioner.name' do
+        metadata {
+          id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Practitioner.name" then
+          assert can_resolve_path(@practitioner, 'name'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Practitioner.name,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Practitioner.name.family' do
+        metadata {
+          id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Practitioner.name.family" then
+          assert can_resolve_path(@practitioner, 'name.family'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Practitioner.name.family,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Practitioner resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '14'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-practitioner.json'
           desc %(
           )
@@ -173,7 +292,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '08'
+          id '15'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

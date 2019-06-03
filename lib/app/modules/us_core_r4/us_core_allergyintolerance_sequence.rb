@@ -156,9 +156,77 @@ module Inferno
   
       end
       
-      test 'AllergyIntolerance resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply AllergyIntolerance.clinicalStatus' do
         metadata {
           id '07'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "AllergyIntolerance.clinicalStatus" then
+          assert can_resolve_path(@allergyintolerance, 'clinicalStatus'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "AllergyIntolerance.clinicalStatus,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply AllergyIntolerance.verificationStatus' do
+        metadata {
+          id '08'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "AllergyIntolerance.verificationStatus" then
+          assert can_resolve_path(@allergyintolerance, 'verificationStatus'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "AllergyIntolerance.verificationStatus,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply AllergyIntolerance.code' do
+        metadata {
+          id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "AllergyIntolerance.code" then
+          assert can_resolve_path(@allergyintolerance, 'code'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "AllergyIntolerance.code,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply AllergyIntolerance.patient' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "AllergyIntolerance.patient" then
+          assert can_resolve_path(@allergyintolerance, 'patient'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "AllergyIntolerance.patient,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'AllergyIntolerance resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '11'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-allergyintolerance.json'
           desc %(
           )
@@ -172,7 +240,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '08'
+          id '12'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

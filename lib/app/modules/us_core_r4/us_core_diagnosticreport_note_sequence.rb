@@ -287,9 +287,179 @@ module Inferno
   
       end
       
-      test 'DiagnosticReport resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply DiagnosticReport.status' do
         metadata {
           id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.status" then
+          assert can_resolve_path(@diagnosticreport, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.category' do
+        metadata {
+          id '14'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.category" then
+          assert can_resolve_path(@diagnosticreport, 'category'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.category,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.code' do
+        metadata {
+          id '15'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.code" then
+          assert can_resolve_path(@diagnosticreport, 'code'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.code,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.subject' do
+        metadata {
+          id '16'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.subject" then
+          assert can_resolve_path(@diagnosticreport, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.encounter' do
+        metadata {
+          id '17'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.encounter" then
+          assert can_resolve_path(@diagnosticreport, 'encounter'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.encounter,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.effective[x]' do
+        metadata {
+          id '18'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.effective[x]" then
+          assert can_resolve_path(@diagnosticreport, 'effectivedateTime') || can_resolve_path(@diagnosticreport, 'effectivePeriod'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.effective[x],"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.issued' do
+        metadata {
+          id '19'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.issued" then
+          assert can_resolve_path(@diagnosticreport, 'issued'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.issued,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.performer' do
+        metadata {
+          id '20'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.performer" then
+          assert can_resolve_path(@diagnosticreport, 'performer'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.performer,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.media' do
+        metadata {
+          id '21'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.media" then
+          assert can_resolve_path(@diagnosticreport, 'media'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.media,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply DiagnosticReport.presentedForm' do
+        metadata {
+          id '22'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "DiagnosticReport.presentedForm" then
+          assert can_resolve_path(@diagnosticreport, 'presentedForm'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "DiagnosticReport.presentedForm,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'DiagnosticReport resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '23'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-diagnosticreport-note.json'
           desc %(
           )
@@ -303,7 +473,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '14'
+          id '24'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

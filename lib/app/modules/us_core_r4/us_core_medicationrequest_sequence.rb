@@ -177,9 +177,128 @@ module Inferno
   
       end
       
-      test 'MedicationRequest resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply MedicationRequest.status' do
         metadata {
           id '08'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "MedicationRequest.status" then
+          assert can_resolve_path(@medicationrequest, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "MedicationRequest.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply MedicationRequest.medication[x]' do
+        metadata {
+          id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "MedicationRequest.medication[x]" then
+          assert can_resolve_path(@medicationrequest, 'medicationCodeableConcept') || can_resolve_path(@medicationrequest, 'medicationReference'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "MedicationRequest.medication[x],"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply MedicationRequest.subject' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "MedicationRequest.subject" then
+          assert can_resolve_path(@medicationrequest, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "MedicationRequest.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply MedicationRequest.authoredOn' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "MedicationRequest.authoredOn" then
+          assert can_resolve_path(@medicationrequest, 'authoredOn'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "MedicationRequest.authoredOn,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply MedicationRequest.requester' do
+        metadata {
+          id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "MedicationRequest.requester" then
+          assert can_resolve_path(@medicationrequest, 'requester'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "MedicationRequest.requester,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply MedicationRequest.dosageInstruction' do
+        metadata {
+          id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "MedicationRequest.dosageInstruction" then
+          assert can_resolve_path(@medicationrequest, 'dosageInstruction'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "MedicationRequest.dosageInstruction,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply MedicationRequest.dosageInstruction.text' do
+        metadata {
+          id '14'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "MedicationRequest.dosageInstruction.text" then
+          assert can_resolve_path(@medicationrequest, 'dosageInstruction.text'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "MedicationRequest.dosageInstruction.text,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'MedicationRequest resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '15'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-medicationrequest.json'
           desc %(
           )
@@ -193,7 +312,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '09'
+          id '16'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

@@ -231,9 +231,128 @@ module Inferno
   
       end
       
-      test 'Observation resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Observation.status' do
         metadata {
           id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.status" then
+          assert can_resolve_path(@observation, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.category' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.category" then
+          assert can_resolve_path(@observation, 'category'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.category,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.code' do
+        metadata {
+          id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.code" then
+          assert can_resolve_path(@observation, 'code'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.code,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.subject' do
+        metadata {
+          id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.subject" then
+          assert can_resolve_path(@observation, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.effective[x]' do
+        metadata {
+          id '14'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.effective[x]" then
+          assert can_resolve_path(@observation, 'effectivedateTime') || can_resolve_path(@observation, 'effectivePeriod'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.effective[x],"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.value[x]' do
+        metadata {
+          id '15'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.value[x]" then
+          assert can_resolve_path(@observation, 'valueQuantity') || can_resolve_path(@observation, 'valueCodeableConcept') || can_resolve_path(@observation, 'valuestring') || can_resolve_path(@observation, 'valueboolean') || can_resolve_path(@observation, 'valueinteger') || can_resolve_path(@observation, 'valueRange') || can_resolve_path(@observation, 'valueRatio') || can_resolve_path(@observation, 'valueSampledData') || can_resolve_path(@observation, 'valuetime') || can_resolve_path(@observation, 'valuedateTime') || can_resolve_path(@observation, 'valuePeriod'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.value[x],"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.dataAbsentReason' do
+        metadata {
+          id '16'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.dataAbsentReason" then
+          assert can_resolve_path(@observation, 'dataAbsentReason'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.dataAbsentReason,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Observation resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '17'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-observation-lab.json'
           desc %(
           )
@@ -247,7 +366,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '11'
+          id '18'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

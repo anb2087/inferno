@@ -231,9 +231,94 @@ module Inferno
   
       end
       
-      test 'Observation resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Observation.status' do
         metadata {
           id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.status" then
+          assert can_resolve_path(@observation, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.code' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.code" then
+          assert can_resolve_path(@observation, 'code'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.code,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.subject' do
+        metadata {
+          id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.subject" then
+          assert can_resolve_path(@observation, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.issued' do
+        metadata {
+          id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.issued" then
+          assert can_resolve_path(@observation, 'issued'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.issued,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Observation.valueCodeableConcept' do
+        metadata {
+          id '14'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Observation.valueCodeableConcept" then
+          assert can_resolve_path(@observation, 'valueCodeableConcept'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Observation.valueCodeableConcept,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Observation resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '15'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-smokingstatus.json'
           desc %(
           )
@@ -247,7 +332,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '11'
+          id '16'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

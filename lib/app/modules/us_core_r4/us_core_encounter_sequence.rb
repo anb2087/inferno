@@ -270,9 +270,298 @@ module Inferno
   
       end
       
-      test 'Encounter resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Encounter.identifier' do
         metadata {
           id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.identifier" then
+          assert can_resolve_path(@encounter, 'identifier'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.identifier,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.identifier.system' do
+        metadata {
+          id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.identifier.system" then
+          assert can_resolve_path(@encounter, 'identifier.system'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.identifier.system,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.identifier.value' do
+        metadata {
+          id '14'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.identifier.value" then
+          assert can_resolve_path(@encounter, 'identifier.value'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.identifier.value,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.status' do
+        metadata {
+          id '15'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.status" then
+          assert can_resolve_path(@encounter, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.class' do
+        metadata {
+          id '16'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.class" then
+          assert can_resolve_path(@encounter, 'class'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.class,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.type' do
+        metadata {
+          id '17'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.type" then
+          assert can_resolve_path(@encounter, 'type'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.type,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.subject' do
+        metadata {
+          id '18'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.subject" then
+          assert can_resolve_path(@encounter, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.participant' do
+        metadata {
+          id '19'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.participant" then
+          assert can_resolve_path(@encounter, 'participant'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.participant,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.participant.type' do
+        metadata {
+          id '20'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.participant.type" then
+          assert can_resolve_path(@encounter, 'participant.type'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.participant.type,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.participant.period' do
+        metadata {
+          id '21'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.participant.period" then
+          assert can_resolve_path(@encounter, 'participant.period'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.participant.period,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.participant.individual' do
+        metadata {
+          id '22'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.participant.individual" then
+          assert can_resolve_path(@encounter, 'participant.individual'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.participant.individual,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.period' do
+        metadata {
+          id '23'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.period" then
+          assert can_resolve_path(@encounter, 'period'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.period,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.reasonCode' do
+        metadata {
+          id '24'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.reasonCode" then
+          assert can_resolve_path(@encounter, 'reasonCode'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.reasonCode,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.hospitalization' do
+        metadata {
+          id '25'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.hospitalization" then
+          assert can_resolve_path(@encounter, 'hospitalization'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.hospitalization,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.hospitalization.dischargeDisposition' do
+        metadata {
+          id '26'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.hospitalization.dischargeDisposition" then
+          assert can_resolve_path(@encounter, 'hospitalization.dischargeDisposition'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.hospitalization.dischargeDisposition,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.location' do
+        metadata {
+          id '27'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.location" then
+          assert can_resolve_path(@encounter, 'location'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.location,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Encounter.location.location' do
+        metadata {
+          id '28'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Encounter.location.location" then
+          assert can_resolve_path(@encounter, 'location.location'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Encounter.location.location,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Encounter resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '29'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-encounter.json'
           desc %(
           )
@@ -286,7 +575,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '13'
+          id '30'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

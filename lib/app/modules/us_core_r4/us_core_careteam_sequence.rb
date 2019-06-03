@@ -132,9 +132,94 @@ module Inferno
   
       end
       
-      test 'CareTeam resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply CareTeam.status' do
         metadata {
           id '06'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "CareTeam.status" then
+          assert can_resolve_path(@careteam, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "CareTeam.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply CareTeam.subject' do
+        metadata {
+          id '07'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "CareTeam.subject" then
+          assert can_resolve_path(@careteam, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "CareTeam.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply CareTeam.participant' do
+        metadata {
+          id '08'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "CareTeam.participant" then
+          assert can_resolve_path(@careteam, 'participant'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "CareTeam.participant,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply CareTeam.participant.role' do
+        metadata {
+          id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "CareTeam.participant.role" then
+          assert can_resolve_path(@careteam, 'participant.role'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "CareTeam.participant.role,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply CareTeam.participant.member' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "CareTeam.participant.member" then
+          assert can_resolve_path(@careteam, 'participant.member'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "CareTeam.participant.member,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'CareTeam resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '11'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-careteam.json'
           desc %(
           )
@@ -148,7 +233,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '07'
+          id '12'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

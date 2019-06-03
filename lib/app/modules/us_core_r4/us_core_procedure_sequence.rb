@@ -204,9 +204,77 @@ module Inferno
   
       end
       
-      test 'Procedure resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Procedure.status' do
         metadata {
           id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Procedure.status" then
+          assert can_resolve_path(@procedure, 'status'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Procedure.status,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Procedure.code' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Procedure.code" then
+          assert can_resolve_path(@procedure, 'code'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Procedure.code,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Procedure.subject' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Procedure.subject" then
+          assert can_resolve_path(@procedure, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Procedure.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Procedure.performed[x]' do
+        metadata {
+          id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Procedure.performed[x]" then
+          assert can_resolve_path(@procedure, 'performeddateTime') || can_resolve_path(@procedure, 'performedPeriod'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Procedure.performed[x],"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Procedure resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '13'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-procedure.json'
           desc %(
           )
@@ -220,7 +288,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '10'
+          id '14'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

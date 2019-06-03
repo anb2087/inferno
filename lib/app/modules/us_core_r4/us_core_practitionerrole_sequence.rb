@@ -155,9 +155,162 @@ module Inferno
   
       end
       
-      test 'PractitionerRole resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply PractitionerRole.practitioner' do
         metadata {
           id '07'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.practitioner" then
+          assert can_resolve_path(@practitionerrole, 'practitioner'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.practitioner,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.organization' do
+        metadata {
+          id '08'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.organization" then
+          assert can_resolve_path(@practitionerrole, 'organization'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.organization,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.code' do
+        metadata {
+          id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.code" then
+          assert can_resolve_path(@practitionerrole, 'code'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.code,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.specialty' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.specialty" then
+          assert can_resolve_path(@practitionerrole, 'specialty'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.specialty,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.location' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.location" then
+          assert can_resolve_path(@practitionerrole, 'location'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.location,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.telecom' do
+        metadata {
+          id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.telecom" then
+          assert can_resolve_path(@practitionerrole, 'telecom'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.telecom,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.telecom.system' do
+        metadata {
+          id '13'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.telecom.system" then
+          assert can_resolve_path(@practitionerrole, 'telecom.system'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.telecom.system,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.telecom.value' do
+        metadata {
+          id '14'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.telecom.value" then
+          assert can_resolve_path(@practitionerrole, 'telecom.value'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.telecom.value,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply PractitionerRole.endpoint' do
+        metadata {
+          id '15'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "PractitionerRole.endpoint" then
+          assert can_resolve_path(@practitionerrole, 'endpoint'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "PractitionerRole.endpoint,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'PractitionerRole resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '16'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-practitionerrole.json'
           desc %(
           )
@@ -171,7 +324,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '08'
+          id '17'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

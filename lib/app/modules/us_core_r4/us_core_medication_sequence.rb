@@ -91,9 +91,26 @@ module Inferno
   
       end
       
-      test 'Medication resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Medication.code' do
         metadata {
           id '05'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Medication.code" then
+          assert can_resolve_path(@medication, 'code'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Medication.code,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Medication resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '06'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-medication.json'
           desc %(
           )
@@ -107,7 +124,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '06'
+          id '07'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

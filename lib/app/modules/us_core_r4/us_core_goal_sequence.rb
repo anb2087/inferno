@@ -177,9 +177,94 @@ module Inferno
   
       end
       
-      test 'Goal resources associated with Patient conform to Argonaut profiles' do
+      test 'Demonstrates that the server can supply Goal.lifecycleStatus' do
         metadata {
           id '08'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Goal.lifecycleStatus" then
+          assert can_resolve_path(@goal, 'lifecycleStatus'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Goal.lifecycleStatus,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Goal.description' do
+        metadata {
+          id '09'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Goal.description" then
+          assert can_resolve_path(@goal, 'description'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Goal.description,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Goal.subject' do
+        metadata {
+          id '10'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Goal.subject" then
+          assert can_resolve_path(@goal, 'subject'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Goal.subject,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Goal.target' do
+        metadata {
+          id '11'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Goal.target" then
+          assert can_resolve_path(@goal, 'target'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Goal.target,"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Demonstrates that the server can supply Goal.target.due[x]' do
+        metadata {
+          id '12'
+          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+          desc %(
+          )
+          versions :r4
+        }
+        
+        if !@instance.must_support_confirmed.include? "Goal.target.due[x]" then
+          assert can_resolve_path(@goal, 'target.duedate') || can_resolve_path(@goal, 'target.dueDuration'), 'Could not find must supported element in the provided resource'
+          @instance.must_support_confirmed += "Goal.target.due[x],"
+          @instance.save!
+        end
+  
+      end
+      
+      test 'Goal resources associated with Patient conform to Argonaut profiles' do
+        metadata {
+          id '13'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-goal.json'
           desc %(
           )
@@ -193,7 +278,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '09'
+          id '14'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )
