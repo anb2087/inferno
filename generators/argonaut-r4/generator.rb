@@ -56,7 +56,8 @@ def extract_metadata(resources)
         interactions: [],
         search_params: [],
         search_combos: [],
-        must_supports: [],
+        must_support_elements: [],
+        must_support_extensions: [],
         tests: []
       }
       searchParams = resource['searchParam']
@@ -110,7 +111,11 @@ def extract_metadata(resources)
       end
       must_supported_elements = new_sequence[:profile_definition]['snapshot']['element'].select{|el| el['mustSupport'] == true} 
       must_supported_elements.each do |el|
-        new_sequence[:must_supports] << el['path']
+        if el['path'].include? '.extension' then
+          new_sequence[:must_supports_extensions] << el['id'] + ',' + el['type']['profile']  #include the extension type
+        else
+          new_sequence[:must_support_elements] << el['path']
+        end
       end
       data[:sequences] << new_sequence
     end
@@ -153,9 +158,7 @@ def generate_tests(metadata)
       end
     end
 
-    sequence[:must_supports].each do |element|
-      create_must_support_test(sequence, element)
-    end
+    create_must_support_test(sequence)
 
     create_resource_profile_test(sequence)
     create_references_resolved_test(sequence)
@@ -271,35 +274,41 @@ def create_interaction_test(sequence, interaction)
   sequence[:tests] << interaction_test
 end
 
-def create_must_support_test(sequence, element)
+def create_must_support_test(sequence)
   test = {
-    tests_that: "Demonstrates that the server can supply #{element}",
+    tests_that: "Demonstrates that the server can supply must supported elements",
     index: '%02d' % (sequence[:tests].length + 1),
-    link: 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
+    link: 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support',
+    test_code: ''
   }
-  path_parts = element.split('.')
-  path_parts.delete_at(0)
-  possible_paths = []
-  path_parts.each_with_index do |part, index|
-    if part.include? '[x]' then
-      element_def = sequence[:profile_definition]['snapshot']['element'].select{|el| el['id'] == "#{sequence[:resource]}.#{path_parts[0..index].join('.')}"}.first
-      types = element_def['type']
-      types.each do |type|
-        type_specified = part.gsub('[x]',type['code'])
-        possible_paths << path_parts.map{|original| (original == part)? type_specified : original}.join('.')
+  must_support_els = sequence[:must_supports]
+  must_support_els.each do |element|
+    possible_paths = []
+    path_parts = element.split('.')
+    path_parts.delete_at(0)
+    path_parts.each_with_index do |part, index|
+      if part.include? '[x]' then
+        element_def = sequence[:profile_definition]['snapshot']['element'].select{|el| el['id'] == "#{sequence[:resource]}.#{path_parts[0..index].join('.')}"}.first
+        types = element_def['type']
+        types.each do |type|
+          type_specified = part.gsub('[x]',type['code'])
+          possible_paths << path_parts.map{|original| (original == part)? type_specified : original}.join('.')
+        end
       end
     end
-  end
-  possible_paths << path_parts.join('.') if possible_paths.empty?
+    possible_paths << path_parts.join('.') if possible_paths.empty?
 
-  exists_assertion = possible_paths.map{|path| "can_resolve_path(@#{sequence[:resource].downcase}, '#{path}')"}.join(' || ')
-  test[:test_code] = %(
-        if !@instance.must_support_confirmed.include? "#{element}" then
-          assert #{exists_assertion}, 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "#{element},"
-          @instance.save!
-        end
+    possible_paths.each do |path|
+      test[:test_code] += %(
+          skip 'Could not find #{element} in the provided resource' unless (@instance.must_support_confirmed.include? "#{element}") || can_resolve_path(@#{sequence[:resource].downcase}, '#{path}')
+          @instance.must_support_confirmed += '#{element}'
+      )
+    end
+  end
+  test[:test_code] += %(
+        @instance.save!
   )
+
   sequence[:tests] << test
 end
 
