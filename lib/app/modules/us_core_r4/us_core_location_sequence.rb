@@ -220,7 +220,7 @@ module Inferno
   
       end
       
-      test 'Demonstrates that the server can supply Location.status' do
+      test 'Demonstrates that the server can supply must supported elements' do
         metadata {
           id '10'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
@@ -229,153 +229,40 @@ module Inferno
           versions :r4
         }
         
-        if !@instance.must_support_confirmed.include? "Location.status" then
-          assert can_resolve_path(@location, 'status'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.status,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.name' do
-        metadata {
-          id '11'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.status in the provided resource' unless (@instance.must_support_confirmed.include? "Location.status") || can_resolve_path(@location, 'status')
+            @instance.must_support_confirmed += 'Location.status'
         
-        if !@instance.must_support_confirmed.include? "Location.name" then
-          assert can_resolve_path(@location, 'name'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.name,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.telecom' do
-        metadata {
-          id '12'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.name in the provided resource' unless (@instance.must_support_confirmed.include? "Location.name") || can_resolve_path(@location, 'name')
+            @instance.must_support_confirmed += 'Location.name'
         
-        if !@instance.must_support_confirmed.include? "Location.telecom" then
-          assert can_resolve_path(@location, 'telecom'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.telecom,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.address' do
-        metadata {
-          id '13'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.telecom in the provided resource' unless (@instance.must_support_confirmed.include? "Location.telecom") || can_resolve_path(@location, 'telecom')
+            @instance.must_support_confirmed += 'Location.telecom'
         
-        if !@instance.must_support_confirmed.include? "Location.address" then
-          assert can_resolve_path(@location, 'address'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.address,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.address.line' do
-        metadata {
-          id '14'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.address in the provided resource' unless (@instance.must_support_confirmed.include? "Location.address") || can_resolve_path(@location, 'address')
+            @instance.must_support_confirmed += 'Location.address'
         
-        if !@instance.must_support_confirmed.include? "Location.address.line" then
-          assert can_resolve_path(@location, 'address.line'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.address.line,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.address.city' do
-        metadata {
-          id '15'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.address.line in the provided resource' unless (@instance.must_support_confirmed.include? "Location.address.line") || can_resolve_path(@location, 'address.line')
+            @instance.must_support_confirmed += 'Location.address.line'
         
-        if !@instance.must_support_confirmed.include? "Location.address.city" then
-          assert can_resolve_path(@location, 'address.city'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.address.city,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.address.state' do
-        metadata {
-          id '16'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.address.city in the provided resource' unless (@instance.must_support_confirmed.include? "Location.address.city") || can_resolve_path(@location, 'address.city')
+            @instance.must_support_confirmed += 'Location.address.city'
         
-        if !@instance.must_support_confirmed.include? "Location.address.state" then
-          assert can_resolve_path(@location, 'address.state'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.address.state,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.address.postalCode' do
-        metadata {
-          id '17'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.address.state in the provided resource' unless (@instance.must_support_confirmed.include? "Location.address.state") || can_resolve_path(@location, 'address.state')
+            @instance.must_support_confirmed += 'Location.address.state'
         
-        if !@instance.must_support_confirmed.include? "Location.address.postalCode" then
-          assert can_resolve_path(@location, 'address.postalCode'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.address.postalCode,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Location.managingOrganization' do
-        metadata {
-          id '18'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Location.address.postalCode in the provided resource' unless (@instance.must_support_confirmed.include? "Location.address.postalCode") || can_resolve_path(@location, 'address.postalCode')
+            @instance.must_support_confirmed += 'Location.address.postalCode'
         
-        if !@instance.must_support_confirmed.include? "Location.managingOrganization" then
-          assert can_resolve_path(@location, 'managingOrganization'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Location.managingOrganization,"
-          @instance.save!
-        end
+            skip 'Could not find Location.managingOrganization in the provided resource' unless (@instance.must_support_confirmed.include? "Location.managingOrganization") || can_resolve_path(@location, 'managingOrganization')
+            @instance.must_support_confirmed += 'Location.managingOrganization'
+        
+        @instance.save!
   
       end
       
       test 'Location resources associated with Patient conform to Argonaut profiles' do
         metadata {
-          id '19'
+          id '11'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-location.json'
           desc %(
           )
@@ -389,7 +276,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '20'
+          id '12'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

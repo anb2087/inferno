@@ -56,8 +56,7 @@ def extract_metadata(resources)
         interactions: [],
         search_params: [],
         search_combos: [],
-        must_support_elements: [],
-        must_support_extensions: [],
+        must_supports: [],
         tests: []
       }
       searchParams = resource['searchParam']
@@ -112,9 +111,9 @@ def extract_metadata(resources)
       must_supported_elements = new_sequence[:profile_definition]['snapshot']['element'].select{|el| el['mustSupport'] == true} 
       must_supported_elements.each do |el|
         if el['path'].include? '.extension' then
-          new_sequence[:must_supports_extensions] << el['id'] + ',' + el['type']['profile']  #include the extension type
+          new_sequence[:must_supports] << { type: 'extension', id: el['id'], path: el['path'], url: el['type'].first['profile'].first }
         else
-          new_sequence[:must_support_elements] << el['path']
+          new_sequence[:must_supports] << { type: 'element', path: el['path'] }
         end
       end
       data[:sequences] << new_sequence
@@ -284,7 +283,7 @@ def create_must_support_test(sequence)
   must_support_els = sequence[:must_supports]
   must_support_els.each do |element|
     possible_paths = []
-    path_parts = element.split('.')
+    path_parts = element[:path].split('.')
     path_parts.delete_at(0)
     path_parts.each_with_index do |part, index|
       if part.include? '[x]' then
@@ -299,10 +298,17 @@ def create_must_support_test(sequence)
     possible_paths << path_parts.join('.') if possible_paths.empty?
 
     possible_paths.each do |path|
-      test[:test_code] += %(
-          skip 'Could not find #{element} in the provided resource' unless (@instance.must_support_confirmed.include? "#{element}") || can_resolve_path(@#{sequence[:resource].downcase}, '#{path}')
-          @instance.must_support_confirmed += '#{element}'
-      )
+      if element[:type] == 'element' then
+        test[:test_code] += %(
+            skip 'Could not find #{element[:path]} in the provided resource' unless (@instance.must_support_confirmed.include? "#{element[:path]}") || can_resolve_path(@#{sequence[:resource].downcase}, '#{path}')
+            @instance.must_support_confirmed += '#{element[:path]}'
+        )
+      else
+        test[:test_code] += %(
+            skip 'Could  not find #{element[:id]} in the provided resource' unless (@instance.must_support_confirmed.include? "#{element[:id]}") || (can_resolve_path(@#{sequence[:resource].downcase}, '#{path}') && @#{sequence[:resource].downcase}.#{path}.any? {|extension| extension.url == '#{element[:url]}'})
+            @instance.must_support_confirmed += '#{element[:id]}'
+        )
+      end
     end
   end
   test[:test_code] += %(

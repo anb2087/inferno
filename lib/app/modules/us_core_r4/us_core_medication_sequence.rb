@@ -91,7 +91,7 @@ module Inferno
   
       end
       
-      test 'Demonstrates that the server can supply Medication.code' do
+      test 'Demonstrates that the server can supply must supported elements' do
         metadata {
           id '05'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
@@ -100,11 +100,10 @@ module Inferno
           versions :r4
         }
         
-        if !@instance.must_support_confirmed.include? "Medication.code" then
-          assert can_resolve_path(@medication, 'code'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Medication.code,"
-          @instance.save!
-        end
+            skip 'Could not find Medication.code in the provided resource' unless (@instance.must_support_confirmed.include? "Medication.code") || can_resolve_path(@medication, 'code')
+            @instance.must_support_confirmed += 'Medication.code'
+        
+        @instance.save!
   
       end
       

@@ -206,7 +206,7 @@ module Inferno
   
       end
       
-      test 'Demonstrates that the server can supply CarePlan.text' do
+      test 'Demonstrates that the server can supply must supported elements' do
         metadata {
           id '09'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
@@ -215,119 +215,34 @@ module Inferno
           versions :r4
         }
         
-        if !@instance.must_support_confirmed.include? "CarePlan.text" then
-          assert can_resolve_path(@careplan, 'text'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "CarePlan.text,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply CarePlan.text.status' do
-        metadata {
-          id '10'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find CarePlan.text in the provided resource' unless (@instance.must_support_confirmed.include? "CarePlan.text") || can_resolve_path(@careplan, 'text')
+            @instance.must_support_confirmed += 'CarePlan.text'
         
-        if !@instance.must_support_confirmed.include? "CarePlan.text.status" then
-          assert can_resolve_path(@careplan, 'text.status'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "CarePlan.text.status,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply CarePlan.status' do
-        metadata {
-          id '11'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find CarePlan.text.status in the provided resource' unless (@instance.must_support_confirmed.include? "CarePlan.text.status") || can_resolve_path(@careplan, 'text.status')
+            @instance.must_support_confirmed += 'CarePlan.text.status'
         
-        if !@instance.must_support_confirmed.include? "CarePlan.status" then
-          assert can_resolve_path(@careplan, 'status'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "CarePlan.status,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply CarePlan.intent' do
-        metadata {
-          id '12'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find CarePlan.status in the provided resource' unless (@instance.must_support_confirmed.include? "CarePlan.status") || can_resolve_path(@careplan, 'status')
+            @instance.must_support_confirmed += 'CarePlan.status'
         
-        if !@instance.must_support_confirmed.include? "CarePlan.intent" then
-          assert can_resolve_path(@careplan, 'intent'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "CarePlan.intent,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply CarePlan.category' do
-        metadata {
-          id '13'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find CarePlan.intent in the provided resource' unless (@instance.must_support_confirmed.include? "CarePlan.intent") || can_resolve_path(@careplan, 'intent')
+            @instance.must_support_confirmed += 'CarePlan.intent'
         
-        if !@instance.must_support_confirmed.include? "CarePlan.category" then
-          assert can_resolve_path(@careplan, 'category'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "CarePlan.category,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply CarePlan.category' do
-        metadata {
-          id '14'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find CarePlan.category in the provided resource' unless (@instance.must_support_confirmed.include? "CarePlan.category") || can_resolve_path(@careplan, 'category')
+            @instance.must_support_confirmed += 'CarePlan.category'
         
-        if !@instance.must_support_confirmed.include? "CarePlan.category" then
-          assert can_resolve_path(@careplan, 'category'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "CarePlan.category,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply CarePlan.subject' do
-        metadata {
-          id '15'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find CarePlan.category in the provided resource' unless (@instance.must_support_confirmed.include? "CarePlan.category") || can_resolve_path(@careplan, 'category')
+            @instance.must_support_confirmed += 'CarePlan.category'
         
-        if !@instance.must_support_confirmed.include? "CarePlan.subject" then
-          assert can_resolve_path(@careplan, 'subject'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "CarePlan.subject,"
-          @instance.save!
-        end
+            skip 'Could not find CarePlan.subject in the provided resource' unless (@instance.must_support_confirmed.include? "CarePlan.subject") || can_resolve_path(@careplan, 'subject')
+            @instance.must_support_confirmed += 'CarePlan.subject'
+        
+        @instance.save!
   
       end
       
       test 'CarePlan resources associated with Patient conform to Argonaut profiles' do
         metadata {
-          id '16'
+          id '10'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-careplan.json'
           desc %(
           )
@@ -341,7 +256,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '17'
+          id '11'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

@@ -231,7 +231,7 @@ module Inferno
   
       end
       
-      test 'Demonstrates that the server can supply Condition.clinicalStatus' do
+      test 'Demonstrates that the server can supply must supported elements' do
         metadata {
           id '10'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
@@ -240,85 +240,28 @@ module Inferno
           versions :r4
         }
         
-        if !@instance.must_support_confirmed.include? "Condition.clinicalStatus" then
-          assert can_resolve_path(@condition, 'clinicalStatus'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Condition.clinicalStatus,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Condition.verificationStatus' do
-        metadata {
-          id '11'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Condition.clinicalStatus in the provided resource' unless (@instance.must_support_confirmed.include? "Condition.clinicalStatus") || can_resolve_path(@condition, 'clinicalStatus')
+            @instance.must_support_confirmed += 'Condition.clinicalStatus'
         
-        if !@instance.must_support_confirmed.include? "Condition.verificationStatus" then
-          assert can_resolve_path(@condition, 'verificationStatus'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Condition.verificationStatus,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Condition.category' do
-        metadata {
-          id '12'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Condition.verificationStatus in the provided resource' unless (@instance.must_support_confirmed.include? "Condition.verificationStatus") || can_resolve_path(@condition, 'verificationStatus')
+            @instance.must_support_confirmed += 'Condition.verificationStatus'
         
-        if !@instance.must_support_confirmed.include? "Condition.category" then
-          assert can_resolve_path(@condition, 'category'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Condition.category,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Condition.code' do
-        metadata {
-          id '13'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Condition.category in the provided resource' unless (@instance.must_support_confirmed.include? "Condition.category") || can_resolve_path(@condition, 'category')
+            @instance.must_support_confirmed += 'Condition.category'
         
-        if !@instance.must_support_confirmed.include? "Condition.code" then
-          assert can_resolve_path(@condition, 'code'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Condition.code,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Condition.subject' do
-        metadata {
-          id '14'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Condition.code in the provided resource' unless (@instance.must_support_confirmed.include? "Condition.code") || can_resolve_path(@condition, 'code')
+            @instance.must_support_confirmed += 'Condition.code'
         
-        if !@instance.must_support_confirmed.include? "Condition.subject" then
-          assert can_resolve_path(@condition, 'subject'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Condition.subject,"
-          @instance.save!
-        end
+            skip 'Could not find Condition.subject in the provided resource' unless (@instance.must_support_confirmed.include? "Condition.subject") || can_resolve_path(@condition, 'subject')
+            @instance.must_support_confirmed += 'Condition.subject'
+        
+        @instance.save!
   
       end
       
       test 'Condition resources associated with Patient conform to Argonaut profiles' do
         metadata {
-          id '15'
+          id '11'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-condition.json'
           desc %(
           )
@@ -332,7 +275,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '16'
+          id '12'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

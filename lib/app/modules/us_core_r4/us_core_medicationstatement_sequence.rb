@@ -177,7 +177,7 @@ module Inferno
   
       end
       
-      test 'Demonstrates that the server can supply MedicationStatement.status' do
+      test 'Demonstrates that the server can supply must supported elements' do
         metadata {
           id '08'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
@@ -186,102 +186,37 @@ module Inferno
           versions :r4
         }
         
-        if !@instance.must_support_confirmed.include? "MedicationStatement.status" then
-          assert can_resolve_path(@medicationstatement, 'status'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "MedicationStatement.status,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply MedicationStatement.medication[x]' do
-        metadata {
-          id '09'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find MedicationStatement.status in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.status") || can_resolve_path(@medicationstatement, 'status')
+            @instance.must_support_confirmed += 'MedicationStatement.status'
         
-        if !@instance.must_support_confirmed.include? "MedicationStatement.medication[x]" then
-          assert can_resolve_path(@medicationstatement, 'medicationCodeableConcept') || can_resolve_path(@medicationstatement, 'medicationReference'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "MedicationStatement.medication[x],"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply MedicationStatement.subject' do
-        metadata {
-          id '10'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find MedicationStatement.medication[x] in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.medication[x]") || can_resolve_path(@medicationstatement, 'medicationCodeableConcept')
+            @instance.must_support_confirmed += 'MedicationStatement.medication[x]'
         
-        if !@instance.must_support_confirmed.include? "MedicationStatement.subject" then
-          assert can_resolve_path(@medicationstatement, 'subject'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "MedicationStatement.subject,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply MedicationStatement.effective[x]' do
-        metadata {
-          id '11'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find MedicationStatement.medication[x] in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.medication[x]") || can_resolve_path(@medicationstatement, 'medicationReference')
+            @instance.must_support_confirmed += 'MedicationStatement.medication[x]'
         
-        if !@instance.must_support_confirmed.include? "MedicationStatement.effective[x]" then
-          assert can_resolve_path(@medicationstatement, 'effectivedateTime') || can_resolve_path(@medicationstatement, 'effectivePeriod'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "MedicationStatement.effective[x],"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply MedicationStatement.dateAsserted' do
-        metadata {
-          id '12'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find MedicationStatement.subject in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.subject") || can_resolve_path(@medicationstatement, 'subject')
+            @instance.must_support_confirmed += 'MedicationStatement.subject'
         
-        if !@instance.must_support_confirmed.include? "MedicationStatement.dateAsserted" then
-          assert can_resolve_path(@medicationstatement, 'dateAsserted'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "MedicationStatement.dateAsserted,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply MedicationStatement.derivedFrom' do
-        metadata {
-          id '13'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find MedicationStatement.effective[x] in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.effective[x]") || can_resolve_path(@medicationstatement, 'effectivedateTime')
+            @instance.must_support_confirmed += 'MedicationStatement.effective[x]'
         
-        if !@instance.must_support_confirmed.include? "MedicationStatement.derivedFrom" then
-          assert can_resolve_path(@medicationstatement, 'derivedFrom'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "MedicationStatement.derivedFrom,"
-          @instance.save!
-        end
+            skip 'Could not find MedicationStatement.effective[x] in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.effective[x]") || can_resolve_path(@medicationstatement, 'effectivePeriod')
+            @instance.must_support_confirmed += 'MedicationStatement.effective[x]'
+        
+            skip 'Could not find MedicationStatement.dateAsserted in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.dateAsserted") || can_resolve_path(@medicationstatement, 'dateAsserted')
+            @instance.must_support_confirmed += 'MedicationStatement.dateAsserted'
+        
+            skip 'Could not find MedicationStatement.derivedFrom in the provided resource' unless (@instance.must_support_confirmed.include? "MedicationStatement.derivedFrom") || can_resolve_path(@medicationstatement, 'derivedFrom')
+            @instance.must_support_confirmed += 'MedicationStatement.derivedFrom'
+        
+        @instance.save!
   
       end
       
       test 'MedicationStatement resources associated with Patient conform to Argonaut profiles' do
         metadata {
-          id '14'
+          id '09'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-medicationstatement.json'
           desc %(
           )
@@ -295,7 +230,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '15'
+          id '10'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

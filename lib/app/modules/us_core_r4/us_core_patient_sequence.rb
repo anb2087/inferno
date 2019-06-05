@@ -274,7 +274,7 @@ module Inferno
   
       end
       
-      test 'Demonstrates that the server can supply Patient.extension' do
+      test 'Demonstrates that the server can supply must supported elements' do
         metadata {
           id '12'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
@@ -283,357 +283,76 @@ module Inferno
           versions :r4
         }
         
-        if !@instance.must_support_confirmed.include? "Patient.extension" then
-          assert can_resolve_path(@patient, 'extension'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.extension,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.extension' do
-        metadata {
-          id '13'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could  not find Patient.extension:race in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.extension:race") || (can_resolve_path(@patient, 'extension') && @patient.extension.any? {|extension| extension.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race'})
+            @instance.must_support_confirmed += 'Patient.extension:race'
         
-        if !@instance.must_support_confirmed.include? "Patient.extension" then
-          assert can_resolve_path(@patient, 'extension'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.extension,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.extension' do
-        metadata {
-          id '14'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could  not find Patient.extension:ethnicity in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.extension:ethnicity") || (can_resolve_path(@patient, 'extension') && @patient.extension.any? {|extension| extension.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity'})
+            @instance.must_support_confirmed += 'Patient.extension:ethnicity'
         
-        if !@instance.must_support_confirmed.include? "Patient.extension" then
-          assert can_resolve_path(@patient, 'extension'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.extension,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.identifier' do
-        metadata {
-          id '15'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could  not find Patient.extension:birthsex in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.extension:birthsex") || (can_resolve_path(@patient, 'extension') && @patient.extension.any? {|extension| extension.url == 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex'})
+            @instance.must_support_confirmed += 'Patient.extension:birthsex'
         
-        if !@instance.must_support_confirmed.include? "Patient.identifier" then
-          assert can_resolve_path(@patient, 'identifier'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.identifier,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.identifier.system' do
-        metadata {
-          id '16'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.identifier in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.identifier") || can_resolve_path(@patient, 'identifier')
+            @instance.must_support_confirmed += 'Patient.identifier'
         
-        if !@instance.must_support_confirmed.include? "Patient.identifier.system" then
-          assert can_resolve_path(@patient, 'identifier.system'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.identifier.system,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.identifier.value' do
-        metadata {
-          id '17'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.identifier.system in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.identifier.system") || can_resolve_path(@patient, 'identifier.system')
+            @instance.must_support_confirmed += 'Patient.identifier.system'
         
-        if !@instance.must_support_confirmed.include? "Patient.identifier.value" then
-          assert can_resolve_path(@patient, 'identifier.value'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.identifier.value,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.name' do
-        metadata {
-          id '18'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.identifier.value in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.identifier.value") || can_resolve_path(@patient, 'identifier.value')
+            @instance.must_support_confirmed += 'Patient.identifier.value'
         
-        if !@instance.must_support_confirmed.include? "Patient.name" then
-          assert can_resolve_path(@patient, 'name'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.name,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.name.family' do
-        metadata {
-          id '19'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.name in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.name") || can_resolve_path(@patient, 'name')
+            @instance.must_support_confirmed += 'Patient.name'
         
-        if !@instance.must_support_confirmed.include? "Patient.name.family" then
-          assert can_resolve_path(@patient, 'name.family'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.name.family,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.name.given' do
-        metadata {
-          id '20'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.name.family in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.name.family") || can_resolve_path(@patient, 'name.family')
+            @instance.must_support_confirmed += 'Patient.name.family'
         
-        if !@instance.must_support_confirmed.include? "Patient.name.given" then
-          assert can_resolve_path(@patient, 'name.given'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.name.given,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.telecom' do
-        metadata {
-          id '21'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.name.given in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.name.given") || can_resolve_path(@patient, 'name.given')
+            @instance.must_support_confirmed += 'Patient.name.given'
         
-        if !@instance.must_support_confirmed.include? "Patient.telecom" then
-          assert can_resolve_path(@patient, 'telecom'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.telecom,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.telecom.system' do
-        metadata {
-          id '22'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.telecom in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.telecom") || can_resolve_path(@patient, 'telecom')
+            @instance.must_support_confirmed += 'Patient.telecom'
         
-        if !@instance.must_support_confirmed.include? "Patient.telecom.system" then
-          assert can_resolve_path(@patient, 'telecom.system'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.telecom.system,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.telecom.value' do
-        metadata {
-          id '23'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.telecom.system in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.telecom.system") || can_resolve_path(@patient, 'telecom.system')
+            @instance.must_support_confirmed += 'Patient.telecom.system'
         
-        if !@instance.must_support_confirmed.include? "Patient.telecom.value" then
-          assert can_resolve_path(@patient, 'telecom.value'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.telecom.value,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.gender' do
-        metadata {
-          id '24'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.telecom.value in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.telecom.value") || can_resolve_path(@patient, 'telecom.value')
+            @instance.must_support_confirmed += 'Patient.telecom.value'
         
-        if !@instance.must_support_confirmed.include? "Patient.gender" then
-          assert can_resolve_path(@patient, 'gender'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.gender,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.birthDate' do
-        metadata {
-          id '25'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.gender in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.gender") || can_resolve_path(@patient, 'gender')
+            @instance.must_support_confirmed += 'Patient.gender'
         
-        if !@instance.must_support_confirmed.include? "Patient.birthDate" then
-          assert can_resolve_path(@patient, 'birthDate'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.birthDate,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.address' do
-        metadata {
-          id '26'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.birthDate in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.birthDate") || can_resolve_path(@patient, 'birthDate')
+            @instance.must_support_confirmed += 'Patient.birthDate'
         
-        if !@instance.must_support_confirmed.include? "Patient.address" then
-          assert can_resolve_path(@patient, 'address'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.address,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.address.line' do
-        metadata {
-          id '27'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.address in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.address") || can_resolve_path(@patient, 'address')
+            @instance.must_support_confirmed += 'Patient.address'
         
-        if !@instance.must_support_confirmed.include? "Patient.address.line" then
-          assert can_resolve_path(@patient, 'address.line'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.address.line,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.address.city' do
-        metadata {
-          id '28'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.address.line in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.address.line") || can_resolve_path(@patient, 'address.line')
+            @instance.must_support_confirmed += 'Patient.address.line'
         
-        if !@instance.must_support_confirmed.include? "Patient.address.city" then
-          assert can_resolve_path(@patient, 'address.city'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.address.city,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.address.state' do
-        metadata {
-          id '29'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.address.city in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.address.city") || can_resolve_path(@patient, 'address.city')
+            @instance.must_support_confirmed += 'Patient.address.city'
         
-        if !@instance.must_support_confirmed.include? "Patient.address.state" then
-          assert can_resolve_path(@patient, 'address.state'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.address.state,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.address.postalCode' do
-        metadata {
-          id '30'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.address.state in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.address.state") || can_resolve_path(@patient, 'address.state')
+            @instance.must_support_confirmed += 'Patient.address.state'
         
-        if !@instance.must_support_confirmed.include? "Patient.address.postalCode" then
-          assert can_resolve_path(@patient, 'address.postalCode'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.address.postalCode,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.communication' do
-        metadata {
-          id '31'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.address.postalCode in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.address.postalCode") || can_resolve_path(@patient, 'address.postalCode')
+            @instance.must_support_confirmed += 'Patient.address.postalCode'
         
-        if !@instance.must_support_confirmed.include? "Patient.communication" then
-          assert can_resolve_path(@patient, 'communication'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.communication,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Patient.communication.language' do
-        metadata {
-          id '32'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Patient.communication in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.communication") || can_resolve_path(@patient, 'communication')
+            @instance.must_support_confirmed += 'Patient.communication'
         
-        if !@instance.must_support_confirmed.include? "Patient.communication.language" then
-          assert can_resolve_path(@patient, 'communication.language'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Patient.communication.language,"
-          @instance.save!
-        end
+            skip 'Could not find Patient.communication.language in the provided resource' unless (@instance.must_support_confirmed.include? "Patient.communication.language") || can_resolve_path(@patient, 'communication.language')
+            @instance.must_support_confirmed += 'Patient.communication.language'
+        
+        @instance.save!
   
       end
       
       test 'Patient resources associated with Patient conform to Argonaut profiles' do
         metadata {
-          id '33'
+          id '13'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-patient.json'
           desc %(
           )
@@ -647,7 +366,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '34'
+          id '14'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )

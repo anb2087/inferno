@@ -177,7 +177,7 @@ module Inferno
   
       end
       
-      test 'Demonstrates that the server can supply Immunization.status' do
+      test 'Demonstrates that the server can supply must supported elements' do
         metadata {
           id '08'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
@@ -186,102 +186,34 @@ module Inferno
           versions :r4
         }
         
-        if !@instance.must_support_confirmed.include? "Immunization.status" then
-          assert can_resolve_path(@immunization, 'status'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Immunization.status,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Immunization.statusReason' do
-        metadata {
-          id '09'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Immunization.status in the provided resource' unless (@instance.must_support_confirmed.include? "Immunization.status") || can_resolve_path(@immunization, 'status')
+            @instance.must_support_confirmed += 'Immunization.status'
         
-        if !@instance.must_support_confirmed.include? "Immunization.statusReason" then
-          assert can_resolve_path(@immunization, 'statusReason'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Immunization.statusReason,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Immunization.vaccineCode' do
-        metadata {
-          id '10'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Immunization.statusReason in the provided resource' unless (@instance.must_support_confirmed.include? "Immunization.statusReason") || can_resolve_path(@immunization, 'statusReason')
+            @instance.must_support_confirmed += 'Immunization.statusReason'
         
-        if !@instance.must_support_confirmed.include? "Immunization.vaccineCode" then
-          assert can_resolve_path(@immunization, 'vaccineCode'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Immunization.vaccineCode,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Immunization.patient' do
-        metadata {
-          id '11'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Immunization.vaccineCode in the provided resource' unless (@instance.must_support_confirmed.include? "Immunization.vaccineCode") || can_resolve_path(@immunization, 'vaccineCode')
+            @instance.must_support_confirmed += 'Immunization.vaccineCode'
         
-        if !@instance.must_support_confirmed.include? "Immunization.patient" then
-          assert can_resolve_path(@immunization, 'patient'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Immunization.patient,"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Immunization.occurrence[x]' do
-        metadata {
-          id '12'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Immunization.patient in the provided resource' unless (@instance.must_support_confirmed.include? "Immunization.patient") || can_resolve_path(@immunization, 'patient')
+            @instance.must_support_confirmed += 'Immunization.patient'
         
-        if !@instance.must_support_confirmed.include? "Immunization.occurrence[x]" then
-          assert can_resolve_path(@immunization, 'occurrencedateTime') || can_resolve_path(@immunization, 'occurrencestring'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Immunization.occurrence[x],"
-          @instance.save!
-        end
-  
-      end
-      
-      test 'Demonstrates that the server can supply Immunization.primarySource' do
-        metadata {
-          id '13'
-          link 'https://build.fhir.org/ig/HL7/US-Core-R4/general-guidance.html/#must-support'
-          desc %(
-          )
-          versions :r4
-        }
+            skip 'Could not find Immunization.occurrence[x] in the provided resource' unless (@instance.must_support_confirmed.include? "Immunization.occurrence[x]") || can_resolve_path(@immunization, 'occurrencedateTime')
+            @instance.must_support_confirmed += 'Immunization.occurrence[x]'
         
-        if !@instance.must_support_confirmed.include? "Immunization.primarySource" then
-          assert can_resolve_path(@immunization, 'primarySource'), 'Could not find must supported element in the provided resource'
-          @instance.must_support_confirmed += "Immunization.primarySource,"
-          @instance.save!
-        end
+            skip 'Could not find Immunization.occurrence[x] in the provided resource' unless (@instance.must_support_confirmed.include? "Immunization.occurrence[x]") || can_resolve_path(@immunization, 'occurrencestring')
+            @instance.must_support_confirmed += 'Immunization.occurrence[x]'
+        
+            skip 'Could not find Immunization.primarySource in the provided resource' unless (@instance.must_support_confirmed.include? "Immunization.primarySource") || can_resolve_path(@immunization, 'primarySource')
+            @instance.must_support_confirmed += 'Immunization.primarySource'
+        
+        @instance.save!
   
       end
       
       test 'Immunization resources associated with Patient conform to Argonaut profiles' do
         metadata {
-          id '14'
+          id '09'
           link 'https://build.fhir.org/ig/HL7/US-Core-R4/StructureDefinition-us-core-immunization.json'
           desc %(
           )
@@ -295,7 +227,7 @@ module Inferno
       
       test 'All references can be resolved' do
         metadata {
-          id '15'
+          id '10'
           link 'https://www.hl7.org/fhir/DSTU2/references.html'
           desc %(
           )
