@@ -747,6 +747,111 @@ module Inferno
         end
       end
 
+      def get_all_resources(klasses = nil)
+        replies = get_all_replies(klasses)
+        return nil unless replies
+        resources = []
+        replies.each do |reply|
+          resources.push(reply.resource.entry.collect{ |singleEntry| singleEntry.resource })
+        end
+        resources.compact!
+        resources.flatten(1)
+      end
+
+      def get_all_replies(klasses = nil)
+        klasses = coerce_to_a(klasses)
+        replies = []
+        if !blank?(klasses)
+          klasses.each do |klass|
+            replies.push(@client.read_feed(klass))
+            while !replies.last.nil?
+              replies.push(@client.next_page(replies.last))
+            end
+          end
+        else
+          replies.push(@client.all_history)
+        end
+        replies.compact!
+        blank?(replies) ? nil : replies
+      end
+
+      def how_many(klass)
+        JSON.parse(@client.raw_read(resource: klass, summary: "count").response[:body])["total"].to_i
+      end
+
+      def conforms_to_dateTime_format(str)
+        dateTimeRegex = /\A(?:(?!0000)\d{4})(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2]\d|3[0-1])(T([01]\d|2[0-3]):[0-5]\d:([0-5]\d|60)(\.\d+)?(Z|(\+|-)((0\d|1[0-3]):[0-5]\d|14:00)))?)?)?\z/
+        dateTimeRegex.match(str)
+      end
+
+      def blank?(param)
+        param.nil? || param.empty?
+      end
+
+      def coerce_to_a(param)
+        return nil unless param
+        param.respond_to?('to_a') ? param.to_a : Array.[](param)
+      end
+
+      def check_profiles(resources = nil, klasses = nil, profiles = nil)
+        resources = get_resource_intersection(resources, klasses, profiles)
+        profiles = coerce_to_a(profiles)
+        profiles.uniq! if profiles
+        errors = {}
+        profileSDs = []
+
+        if blank?(profiles)
+          resources.each { |resource| profileSDs.push(resource.meta.profile) }
+          profileSDs.flatten!
+          profileSDs.uniq!
+          profileSDs.collect!{ |profile| Inferno::ValidationUtil.get_profile(profile) } 
+        else
+          profileSDs = profiles.collect{ |profile| Inferno::ValidationUtil.get_profile(profile) }
+        end
+        profileSDs.compact!
+        if profiles && profileSDs.length != profiles.length
+          errors["params"] = "Not all profile urls in the profiles param are in Inferno" 
+        end
+        puts profileSDs.length
+        profileSDs.each do |sd|
+          errArr = resources.collect{ |resource| 
+            err = sd.validate_resource(resource)
+            blank?(err) ? nil : {resource.id.to_s => err}
+          }
+          errArr.compact!
+          errors[sd.name] = errArr unless blank?(errArr)
+        end
+        errors
+      end
+
+	    def check_validity(resources = nil, klasses = nil)
+	      resources = get_resource_intersection(resources, klasses)
+        errors = {}
+	      resources.each do |resource|
+	        errArr = resource.validate.values
+          errors[resource.id] = errArr unless blank?(errArr)
+	      end
+        errors
+      end
+    
+	    def get_resource_intersection(resources = nil, klasses = nil, profiles = nil)
+        resources = coerce_to_a(resources)
+        klasses = coerce_to_a(klasses)
+        profiles = coerce_to_a(profiles)
+        
+        if blank?(resources)
+          resources = get_all_resources(klasses)
+        elsif !blank?(klasses)
+          resources.select!{ |resource| klasses.include?(resource.class) }
+        end
+        unless blank?(profiles)
+          resources.select!{ |resource| !blank?(profiles & ((resource.meta.nil? || blank?(resource.meta.profile)) ? [] : resource.meta.profile)) }
+        end
+
+        resources
+      end
+
+
       def check_resource_against_profile(resource, resource_type, specified_profile=nil)
         assert resource.is_a?("FHIR::DSTU2::#{resource_type}".constantize),
                "Expected resource to be of type #{resource_type}"

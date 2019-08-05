@@ -132,6 +132,10 @@ module Inferno
       nil
     end
 
+    def self.get_profile(uri)
+      DEFINITIONS[uri]
+    end
+
     def self.guess_r4_profile(resource)
       if resource
         # if the profile is given, we don't need to guess

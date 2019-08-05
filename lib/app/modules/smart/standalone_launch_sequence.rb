@@ -178,7 +178,7 @@ module Inferno
         else
           oauth2_params['client_id'] = @instance.client_id
         end
-        @token_response = LoggedRestClient.post(@instance.oauth_token_endpoint, oauth2_params, oauth2_headers)
+        response = LoggedRestClient.post(@instance.oauth_token_endpoint, oauth2_params, oauth2_headers)
         assert_response_ok(@token_response)
 
       end
