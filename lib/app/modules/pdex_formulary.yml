@@ -1,0 +1,13 @@
+name: pdex_formulary
+title: Pdex Formulary Tests
+description: Tests designed to verify input meets standards required by drug formulary specifications
+default_test_set: developer
+fhir_version: r4
+test_sets:
+  developer:
+    view: default
+    tests:
+      - name: Pdex Formulary Testing
+        sequences:
+          - CoveragePlanSequence
+          - FormularyDrugSequence
