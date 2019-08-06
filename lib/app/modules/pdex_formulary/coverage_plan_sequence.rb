@@ -14,8 +14,14 @@ module Inferno
 
             requires :url
 
+            ##
+            #@profileold refers to the may 19th version of the IG
+            #@profile is the more recent one
+
             @coverageplan = nil
             @total= nil
+            @profile= nil
+            @profileold= nil
     
 
             test 'Able to retrieve all List resources' do
@@ -57,7 +63,7 @@ module Inferno
                     id '03'
                     desc 'Check cardinality of coverage plan specifications'
                 }
-                errors= check_profiles(nil, FHIR::List, @profile)
+                errors= check_profiles(nil, FHIR::List, @profileold)
                 assert errors.empty?, errors.to_s
             end
         end

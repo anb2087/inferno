@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/siteadmin/inferno.svg?branch=master)](https://travis-ci.org/siteadmin/inferno)
 
+This repo is an extension off of Inferno with added test sequences for the Coverage Plan and Formulary Drug FHIR profiles. The profiles can either be from the May 19 IG or the July IG. In addition to these sequences, the sequence_base file has been extended to include the necessary functions for the test suite. The rest of Inferno has remained relatively untouched. 
+
 Inferno is an open source tool that tests whether patients can access their health data through a standard interface.
 It makes HTTP(S) requests to test your server's conformance to authentication, authorization, and FHIR content standards and reports the results back to you.
 

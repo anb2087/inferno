@@ -14,6 +14,10 @@ module Inferno
 
             requires :url
 
+            ##
+            #@profileold refers to the may 19th version of the IG
+            #@profile is the more recent one
+            
             @formularydrug = nil
             @total= nil
             @profile= nil
@@ -27,7 +31,8 @@ module Inferno
                     Tests if the FHIR server will return every medication knowledge the bundles say it will
                   )
                 }
-        
+                @profile= 'http://hl7.org/fhir/us/Davinci-drug-formulary/StructureDefinition/usdf-FormularyDrug'
+                @profileold= 'https://api-v8-r4.hspconsortium.org/DrugFormulary1/open/StructureDefinition/usdrugformulary-FormularyDrug'
                 total = how_many(FHIR::MedicationKnowledge)
                 @formularydrug = get_all_resources(FHIR::MedicationKnowledge)
                 @formularydrug.each do |q|
@@ -57,9 +62,7 @@ module Inferno
                     id '03'
                     desc 'Check cardinality of formulary drug specifications'
                 }
-                @profile= 'http://hl7.org/fhir/us/Davinci-drug-formulary/StructureDefinition/usdf-FormularyDrug'
-                @profileold= 'https://api-v8-r4.hspconsortium.org/DrugFormulary1/open/StructureDefinition/usdrugformulary-FormularyDrug'
-                errors= check_profiles(nil, FHIR::MedicationKnowledge, @profile)
+                errors= check_profiles(nil, FHIR::MedicationKnowledge, @profileold)
                 assert errors.empty?, errors.to_s
             end
         end
