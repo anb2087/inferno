@@ -924,7 +924,7 @@ module Inferno
       # This means an empty array indicates a fully consistent check.
 
 	    def check_validity(resources = nil, klasses = nil)
-	      resources = get_resource_intersection(resources, klasses)
+        resources = get_resource_intersection(resources, klasses)
         errors = {}
 	      resources.each do |resource|
 	        errArr = resource.validate.values
@@ -975,14 +975,21 @@ module Inferno
         resources = coerce_to_a(resources)
         klasses = coerce_to_a(klasses)
         profiles = coerce_to_a(profiles)
+        res_with_prof=[]
         
+      
         if blank?(resources)
           resources = get_all_resources(klasses)
         elsif !blank?(klasses)
           resources.select!{ |resource| klasses.include?(resource.class) }
         end
         unless blank?(profiles)
-          resources.select!{ |resource| !blank?(profiles & ((resource.meta.nil? || blank?(resource.meta.profile)) ? [] : resource.meta.profile)) }
+          resources.each { |resource| ( if resource.meta.profile == [] 
+             []
+          else 
+            res_with_prof << resource
+          end)}
+          return res_with_prof
         end
 
         resources
